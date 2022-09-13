@@ -3,7 +3,6 @@ package benjamin.sinzore.Controller.Security;
 import benjamin.sinzore.Service.Services;
 import benjamin.sinzore.model.RequestBody.*;
 import benjamin.sinzore.model.response.*;
-import com.mongodb.internal.async.function.AsyncCallbackFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +41,6 @@ public class SecurityController {
     @PostMapping("BankEmployeeLoginAndReturnCustomerPendingApproval")
     public BankEmployeeLoginRes BankEmployeeLoginAndReturnCustomerPendingApproval(@RequestBody BankEmployeeRegistrationModel regModel){
 
-
         return services.BankEmployeeLoginAndReturnCustomerPendingApproval(regModel);
     }
 
@@ -54,12 +52,12 @@ public class SecurityController {
 	}
 
 	@PostMapping("CustomerTransactionDeposit")
-	public CustomerTransaction_Deposit CustomerTransactionDeposit(@RequestBody CustomerTransaction_DepositReq regModel){
-		return services.CustomerTransaction_Deposit(regModel);
+	public CustomerTransaction_Deposit CustomerTransactionDeposit(@RequestBody CustomerTransactionsReq reqModel){
+		return services.CustomerTransaction_Deposit(reqModel);
 	}
 
 	@PostMapping("CustomerTransactionWithdraw")
-	public CustomerTransaction_Withdraw CustomerTransactionWithdraw(@RequestBody CustomerTransaction_WithdrawReq regModel){
+	public CustomerTransaction_Withdraw CustomerTransactionWithdraw(@RequestBody CustomerTransactionsReq regModel){
 		return services.CustomerTransaction_Withdraw(regModel);
 	}
 
@@ -68,13 +66,12 @@ public class SecurityController {
 		return services.CustomerTransaction_TransferFunds(regModel);
 	}
 
+	@PostMapping("CustomerTransaction_GetAvailableBalance")
+	public CustomerTransaction_GetAvailableBalanceRes CustomerTransaction_GetAvailableBalance(@RequestBody GetAvailableBalance regModel){
+		System.out.println(regModel);
+		return services.CustomerTransaction_GetAvailableBalance(regModel);
+	}
+
+
 }
-
-
-
-
-//CREATE SCHEMA `bankAccountTest` ;
-//
-//CREATING A SCHEMA
-//CREATE SCHEMA `bankAccountTest` ;
 

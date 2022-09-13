@@ -9,8 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
-public class CustomerTransaction_TransferFundsReq {
+public class CustomerTransactionsReq {
     String AccountNumber;
-    String AccountNumberToSendTo;
     int Amount;
 }

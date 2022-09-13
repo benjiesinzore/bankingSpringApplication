@@ -10,7 +10,7 @@ public class BankEmployeeLoginRes {
     int status = 500;
     String message =  "Poor internet Connection";
     String error = "Internal Server Error";
-    List data;
+    List<CustomerPendingApproval_Details> data;
 }
 
 

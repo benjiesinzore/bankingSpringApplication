@@ -3,6 +3,7 @@ package benjamin.sinzore.model.response;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -16,7 +17,7 @@ import javax.persistence.*;
 })
 public class CustomerLoginResponse {
     @Id
-    String timestamp ;
+    String timestamp = String.valueOf(new Date());
     int status = 500;
     String error = "Internal Sever error.";
     String message = "Poor internet connection.";

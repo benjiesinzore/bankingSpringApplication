@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Entity
 @Setter
 @Getter
-@NamedStoredProcedureQueries({@NamedStoredProcedureQuery(name = "sp_BankEmployee",
-        procedureName = "sp_BankEmployee", parameters = {
+@NamedStoredProcedureQueries({@NamedStoredProcedureQuery(name = "sp_BankEmployeeRegistrationDetails",
+        procedureName = "sp_BankEmployeeRegistrationDetails", parameters = {
         @StoredProcedureParameter(	mode = ParameterMode.IN, name = "employeeIDIN", type = String.class),
         @StoredProcedureParameter(	mode = ParameterMode.IN, name = "employeePasswordIN", type = String.class),
         @StoredProcedureParameter(	mode = ParameterMode.IN, name = "employeeNameIN", type = String.class),

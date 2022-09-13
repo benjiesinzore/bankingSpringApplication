@@ -5,8 +5,6 @@ import benjamin.sinzore.model.RequestBody.*;
 import benjamin.sinzore.model.response.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class Services {
@@ -21,7 +19,9 @@ public class Services {
     public CustomerRegistrationResponse CustomerRegistration(CustomerRegistrationModel regModel){
 
         CustomerRegistrationResponse res = new CustomerRegistrationResponse();
-        try{
+
+         try{
+
             res.setMessage((String) dao.CustomerRegistration(regModel).getSingleResult());
         } catch (Exception ee){
             ee.printStackTrace();
@@ -60,14 +60,11 @@ public class Services {
     public BankEmployeeLoginRes BankEmployeeLoginAndReturnCustomerPendingApproval(BankEmployeeRegistrationModel regModel){
 
         BankEmployeeLoginRes getRes = new BankEmployeeLoginRes();
-        List list;
         try{
             getRes.setStatus(200);
-            getRes.setMessage("Here is a list of Customers Pending Approval.");
+            getRes.setMessage("Hello, here is a list of Customers Pending Approval.");
             getRes.setError("null");
-
-            list = dao.BankEmployeeLoginAndReturnCustomerPendingApproval(regModel);
-            getRes.setData(list);
+            getRes.setData(dao.BankEmployeeLoginAndReturnCustomerPendingApproval(regModel));
         } catch (Exception ee){
             ee.printStackTrace();
         }
@@ -87,10 +84,9 @@ public class Services {
     }
 
 
-    public CustomerTransaction_Deposit CustomerTransaction_Deposit(CustomerTransaction_DepositReq resModel){
+    public CustomerTransaction_Deposit CustomerTransaction_Deposit(CustomerTransactionsReq resModel){
 
         CustomerTransaction_Deposit res = new CustomerTransaction_Deposit();
-        String now = new Date().toString();
 
         //Check if amount is 0 or a negative value
         if(resModel.getAmount() <= 0) {
@@ -98,7 +94,7 @@ public class Services {
         } else {
 
             try {
-                resModel.setCreatedOn(now);
+
                 res.setMessage((String) dao.CustomerTransaction_Deposit(resModel).getSingleResult());
             } catch (Exception ee){
                 ee.printStackTrace();
@@ -108,26 +104,39 @@ public class Services {
         return res;
     }
 
-    public CustomerTransaction_Withdraw CustomerTransaction_Withdraw(CustomerTransaction_WithdrawReq resModel){
+    public CustomerTransaction_Withdraw CustomerTransaction_Withdraw(CustomerTransactionsReq resModel){
 
         CustomerTransaction_Withdraw res = new CustomerTransaction_Withdraw();
-        String now = new Date().toString();
-        try {
-            resModel.setCreatedOn(now);
-            res.setMessage((String) dao.CustomerTransaction_Withdraw(resModel).getSingleResult());
-        } catch (Exception ee){
-            ee.printStackTrace();
+
+        if(resModel.getAmount() <= 0) {
+            res.setMessage("Please check the amount before you proceed.");
+        } else {
+            try {
+                res.setMessage((String) dao.CustomerTransaction_Withdraw(resModel).getSingleResult());
+            } catch (Exception ee){
+                ee.printStackTrace();
+            }
         }
+
         return res;
     }
 
     public CustomerTransaction_TransferFunds CustomerTransaction_TransferFunds(CustomerTransaction_TransferFundsReq resModel){
 
         CustomerTransaction_TransferFunds res = new CustomerTransaction_TransferFunds();
-        String now = new Date().toString();
         try {
-            resModel.setCreatedOn(now);
             res.setMessage((String) dao.CustomerTransaction_TransferFunds(resModel).getSingleResult());
+        } catch (Exception ee){
+            ee.printStackTrace();
+        }
+        return res;
+    }
+
+    public CustomerTransaction_GetAvailableBalanceRes CustomerTransaction_GetAvailableBalance(GetAvailableBalance resModel){
+
+        CustomerTransaction_GetAvailableBalanceRes res = new CustomerTransaction_GetAvailableBalanceRes();
+        try {
+            res.setMessage((String) dao.CustomerTransaction_GetAvailableBalanceRes(resModel).getSingleResult());
         } catch (Exception ee){
             ee.printStackTrace();
         }

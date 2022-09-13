@@ -9,8 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
-public class CustomerTransaction_DepositReq {
-    String AccountNumber;
-    int Amount;
-    String CreatedOn;
+public class CustomerTransaction_GetAvailableBalanceReq {
+    int AccountNumber;
 }
+
+

@@ -12,8 +12,7 @@ import javax.persistence.*;
         procedureName = "sp_CustomerTransaction_TransferFunds", parameters = {
         @StoredProcedureParameter(	mode = ParameterMode.IN, name = "accountNumberIN", type = String.class),
         @StoredProcedureParameter(	mode = ParameterMode.IN, name = "accountNumberToSendToIN", type = String.class),
-        @StoredProcedureParameter(	mode = ParameterMode.IN, name = "amountIN", type = int.class),
-        @StoredProcedureParameter(	mode = ParameterMode.IN, name = "createdOnIN", type = String.class)
+        @StoredProcedureParameter(	mode = ParameterMode.IN, name = "amountIN", type = int.class)
 })
 })
 public class CustomerTransaction_TransferFunds {
